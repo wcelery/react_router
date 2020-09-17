@@ -1,13 +1,29 @@
 import React from 'react';
 import './App.css';
+import {Link} from 'react-router-dom';
+
+
 
 function Nav() {
+
+  const linkStyle = {
+    color:  'white',
+    'textDecoration': 'none'
+  }
+
+
   return (
     <section>
-      <h3>About</h3>
+      <Link style={linkStyle} to='/'>
+        <h3>Logo</h3>
+      </Link>
       <ul className='nav-links'>
+        <Link style={linkStyle} to='/about'>
           <li>About</li>
-          <li>Who we are</li>
+        </Link>
+        <Link style={linkStyle} to='/content'>
+          <li>Content</li>
+        </Link>
       </ul>
     </section>
   );
