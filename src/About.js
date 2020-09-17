@@ -3,13 +3,9 @@ import './App.css';
 
 function About() {
   return (
-    <section>
-      <h3>About</h3>
-      <ul>
-          <li>About</li>
-          <li>Who we are</li>
-      </ul>
-    </section>
+    <div className="App">
+      <h3>About page</h3>
+    </div>
   );
 }
 
