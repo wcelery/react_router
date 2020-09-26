@@ -1,6 +1,5 @@
 import React from "react";
 import "../App.css";
-import { GlobalContext } from "../context/GlobalState";
 
 function MovieDetail(props) {
   const [details, setDetails] = React.useState({});
