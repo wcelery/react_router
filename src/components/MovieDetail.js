@@ -1,7 +1,8 @@
 import React from "react";
 import "../App.css";
+import { GlobalContext } from "../context/GlobalState";
 
-function MovieDetail({ match }) {
+function MovieDetail(props) {
   const [details, setDetails] = React.useState({});
 
   /* const [details, setDetails] = React.useState({                          <===========    if array have images inside
@@ -12,7 +13,7 @@ function MovieDetail({ match }) {
 
   const fetchMovieDetail = async () => {
     const data = await fetch(
-      `https://api.themoviedb.org/3/movie/${match.params.id}?api_key=${API_KEY}`
+      `https://api.themoviedb.org/3/movie/${props.match.params.id}?api_key=${API_KEY}`
     ); /* match.params.whatever is access to props from previous state */
     const details = await data.json();
     setDetails(details);
@@ -23,6 +24,8 @@ function MovieDetail({ match }) {
   React.useEffect(() => {
     fetchMovieDetail();
   }, []);
+
+  console.log(props.location);
 
   return (
     <div>

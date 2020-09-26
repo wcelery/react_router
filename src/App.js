@@ -7,22 +7,25 @@ import Home from "./components/Home";
 import MovieDetail from "./components/MovieDetail";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Favorites from "./components/Favorites";
+import { GlobalProvider } from "./context/GlobalState";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Nav />
-        <Switch>
-          <Route path="/" exact component={Home} />{" "}
-          {/* exact means this specific path */}
-          <Route path="/content" exact component={Content} />
-          <Route path="/favorites" component={Favorites} />
-          <Route path="/about" component={About} />
-          <Route path="/content/:id" component={MovieDetail} />
-        </Switch>
-      </div>
-    </Router>
+    <GlobalProvider>
+      <Router>
+        <div className="App">
+          <Nav />
+          <Switch>
+            <Route path="/" exact component={Home} />{" "}
+            {/* exact means this specific path */}
+            <Route path="/content" exact component={Content} />
+            <Route path="/favorites" component={Favorites} />
+            <Route path="/about" component={About} />
+            <Route path="/content/:id" component={MovieDetail} />
+          </Switch>
+        </div>
+      </Router>
+    </GlobalProvider>
   );
 }
 

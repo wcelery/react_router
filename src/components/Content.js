@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
+import { GlobalContext } from "../context/GlobalState";
 
 function Content() {
   const [movies, setMovies] = React.useState([]);
@@ -14,6 +15,9 @@ function Content() {
     setMovies(movies.results);
   };
 
+  //pull variables from context by destructuring
+  const { addToFavorites, favorites } = React.useContext(GlobalContext);
+
   React.useEffect(() => {
     fetchMovies();
   }, []);
@@ -23,18 +27,27 @@ function Content() {
     textDecoration: "none",
   };
 
+  let storedFavorite = favorites.find((o) => o.id === movies.id);
+
+  const favoritesDisabled = storedFavorite ? true : false;
+
   return (
     <div>
       <h3>Main content</h3>
       <div className="movie">
         {movies.map((movie) => (
-          <div>
-            <h2 key={movie.id}>
+          <div key={movie.id}>
+            <h2>
               <Link style={linkStyle} to={`content/${movie.id}`}>
                 {movie.title}
               </Link>
             </h2>
-            <button>+</button>
+            <button
+              disabled={favoritesDisabled}
+              onClick={() => addToFavorites(movie)}
+            >
+              +
+            </button>
           </div>
         ))}
       </div>
